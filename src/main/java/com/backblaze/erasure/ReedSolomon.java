@@ -78,12 +78,17 @@ public class ReedSolomon {
 
     /**
      * Encodes parity for a set of data shards.
+     * 为一组数据碎片编码奇偶校验。
      *
      * @param shards An array containing data shards followed by parity shards.
+     *               一个数组，包含数据碎片，后跟奇偶校验碎片。
      *               Each shard is a byte array, and they must all be the same
      *               size.
+     *               每个碎片都是一个字节数组，它们的大小必须相同
      * @param offset The index of the first byte in each shard to encode.
+     *              要编码的每个碎片中第一个字节的索引。
      * @param byteCount The number of bytes to encode in each shard.
+     *              每个碎片中要编码的字节数。
      *
      */
     public void encodeParity(byte[][] shards, int offset, int byteCount) {

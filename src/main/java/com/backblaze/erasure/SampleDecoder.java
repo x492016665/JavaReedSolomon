@@ -24,21 +24,24 @@ import java.nio.ByteBuffer;
  */
 public class SampleDecoder {
 
-    public static final int DATA_SHARDS = 4;
+    public static final int DATA_SHARDS = 1;
     public static final int PARITY_SHARDS = 2;
-    public static final int TOTAL_SHARDS = 6;
+    public static final int TOTAL_SHARDS = 3;
 
     public static final int BYTES_IN_INT = 4;
 
     @SuppressWarnings("ResultOfMethodCallIgnored")
     public static void main(String [] arguments) throws IOException {
 
-        // Parse the command line
+        /*// Parse the command line
         if (arguments.length != 1) {
             System.out.println("Usage: SampleDecoder <fileName>");
             return;
-        }
-        final File originalFile = new File(arguments[0]);
+        }*/
+        long start = System.currentTimeMillis();
+        String file = "C:\\Root\\Downloads\\d\\LSYF3471.MP4";
+       // final File originalFile = new File(arguments[0]);
+        final File originalFile = new File(file);
         if (!originalFile.exists()) {
             System.out.println("Cannot read input file: " + originalFile);
             return;
@@ -99,5 +102,7 @@ public class SampleDecoder {
         OutputStream out = new FileOutputStream(decodedFile);
         out.write(allBytes, BYTES_IN_INT, fileSize);
         System.out.println("Wrote " + decodedFile);
+        long end = System.currentTimeMillis();
+        System.out.println(end - start);
     }
 }

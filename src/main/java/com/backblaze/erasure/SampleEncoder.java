@@ -16,13 +16,19 @@ import java.nio.ByteBuffer;
 
 /**
  * Command-line program encodes one file using Reed-Solomon 4+2.
- *
+ * 命令行程序使用Reed Solomon 4+2对一个文件进行编码。
  * The one argument should be a file name, say "foo.txt".  This program
+ * 一个参数应该是一个文件名，比如“食品.txt".
  * will create six files in the same directory, breaking the input file
  * into four data shards, and two parity shards.  The output files are
+ * 这个程序将在同一个目录中创建六个文件，将输入文件分成四个数据碎片和两个奇偶校验碎片。
  * called "foo.txt.0", "foo.txt.1", ..., and "foo.txt.5".  Numbers 4
  * and 5 are the parity shards.
+ * 输出文件称为“食品.txt.0“，”食品.txt.1“，…，和”食品.txt0.5英寸。
+ * 数字4和5是奇偶校验碎片。
  *
+ * 存储的数据是文件大小（4字节int），后跟文件内容，然后用0填充为4字节的倍数。
+ * 填充是因为所有四个数据碎片的大小必须相同。
  * The data stored is the file size (four byte int), followed by the
  * contents of the file, and then padded to a multiple of four bytes
  * with zeros.  The padding is because all four data shards must be
@@ -30,20 +36,23 @@ import java.nio.ByteBuffer;
  */
 public class SampleEncoder {
 
-    public static final int DATA_SHARDS = 4;
+    public static final int DATA_SHARDS = 1;
     public static final int PARITY_SHARDS = 2;
-    public static final int TOTAL_SHARDS = 6;
+    public static final int TOTAL_SHARDS = 4;
 
     public static final int BYTES_IN_INT = 4;
 
     public static void main(String [] arguments) throws IOException {
 
         // Parse the command line
-        if (arguments.length != 1) {
+       /* if (arguments.length != 1) {
             System.out.println("Usage: SampleEncoder <fileName>");
             return;
         }
-        final File inputFile = new File(arguments[0]);
+        final File inputFile = new File(arguments[0]);*/
+        long start = System.currentTimeMillis();
+        String file = "C:\\Root\\Downloads\\d\\LSYF3471.MP4";
+        final File inputFile = new File(file);
         if (!inputFile.exists()) {
             System.out.println("Cannot read input file: " + inputFile);
             return;
@@ -92,5 +101,7 @@ public class SampleEncoder {
             out.close();
             System.out.println("wrote " + outputFile);
         }
+        long end = System.currentTimeMillis();
+        System.out.println(end -start);
     }
 }

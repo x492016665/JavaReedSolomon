@@ -58,23 +58,36 @@ public interface CodingLoop {
     /**
      * Multiplies a subset of rows from a coding matrix by a full set of
      * input shards to produce some output shards.
+     * 将编码矩阵中的行子集乘以一组完整的输入碎片，以生成一些输出碎片。
      *
      * @param matrixRows The rows from the matrix to use.
+     *                   矩阵中要使用的行。
      * @param inputs An array of byte arrays, each of which is one input shard.
+     *               字节数组的数组，每个数组都是一个输入碎片。
      *               The inputs array may have extra buffers after the ones
+     *               输入数组可能在使用的缓冲区之后有额外的缓冲区。
      *               that are used.  They will be ignored.  The number of
      *               inputs used is determined by the length of the
      *               each matrix row.
+     *               他们将被忽略。使用的输入数由每个矩阵行的长度决定
+     *
      * @param inputCount The number of input byte arrays.
+     *                   输入字节数组的数目。
      * @param outputs Byte arrays where the computed shards are stored.  The
+     *                存储计算碎片的字节数组。
      *                outputs array may also have extra, unused, elements
+     *                输出阵列的末尾可能还有多余的未使用的元素。
      *                at the end.  The number of outputs computed, and the
      *                number of matrix rows used, is determined by
      *                outputCount.
+     *                计算的输出数和使用的矩阵行数由outputCount确定。
      * @param outputCount The number of outputs to compute.
+     *                    要计算的输出数
      * @param offset The index in the inputs and output of the first byte
      *               to process.
+     *               要处理的第一个字节的输入和输出中的索引
      * @param byteCount The number of bytes to process.
+     *               要处理的字节数
      */
      void codeSomeShards(final byte [] [] matrixRows,
                          final byte [] [] inputs,
@@ -88,7 +101,7 @@ public interface CodingLoop {
      * Multiplies a subset of rows from a coding matrix by a full set of
      * input shards to produce some output shards, and checks that the
      * the data is those shards matches what's expected.
-     *
+     * 将编码矩阵中的行子集乘以一组完整的输入碎片，以生成一些输出碎片，并检查数据是否与预期的碎片匹配。
      * @param matrixRows The rows from the matrix to use.
      * @param inputs An array of byte arrays, each of which is one input shard.
      *               The inputs array may have extra buffers after the ones
